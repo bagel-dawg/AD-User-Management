@@ -7,8 +7,9 @@ import getpass
 from datetime import datetime ,date ,time ,timedelta ,timezone
 
 #SCRIPT OPTIONS
-ldap_username = 'ryan@cs.odu.edu'
-search_ou = 'DC=cs,DC=odu,DC=edu'
+ldap_username = 'username@domain.com'
+search_ou = 'DC=domain,DC=com'
+ldap_server = 'ldap.domain.com'
 
 ldap_filter = '(&(objectCategory=person)(objectClass=user)(sAMAccountName=%s))' % str(sys.argv[1])
 
@@ -22,7 +23,7 @@ logger = logging.getLogger('Get-Attributes.py')
 ldap_pass = getpass.getpass("LDAP Password:")
 
 #LDAP Server Connect
-server = Server('ad.cs.odu.edu', get_info=ALL)
+server = Server(ldap_server, get_info=ALL)
 conn = Connection(server, ldap_username, ldap_pass, auto_bind=True)
 conn.search(search_ou,ldap_filter,attributes=attributes)
 
