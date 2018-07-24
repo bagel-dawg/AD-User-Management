@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 import os
 import sys
-import logging
 from pathlib import Path
 from ldap3 import Server, Connection, ALL
 import getpass
-from datetime import datetime ,date ,time ,timedelta ,timezone
 import argparse
 
 #SCRIPT OPTIONS
@@ -31,9 +29,6 @@ if args.uin:
 
 #Attributes that you want displayed
 attributes = ["DisplayName", "EmployeeNumber", "HomeDirectory"  , "midas",  "loginshell" , "gidNumber", "uidNumber", "PwdLastSet", "ProfilePath", "sAMAccountName", "BadPasswordTime", "extensionattribute1", "WhenCreated","lastLogon", "lastLogonTimestamp","lockoutTime"]
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger('Get-Attributes.py')
 
 #Obtain LDAP Password
 ldap_pass = getpass.getpass("LDAP Password:")
